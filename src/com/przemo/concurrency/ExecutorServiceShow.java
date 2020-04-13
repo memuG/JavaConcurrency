@@ -4,8 +4,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
-import sun.jvm.hotspot.utilities.soql.Callable;
+import java.util.concurrent.Callable;
 
 public class ExecutorServiceShow {
     public static void main(String[] args) {
@@ -30,19 +29,20 @@ public class ExecutorServiceShow {
             e.printStackTrace();
         }
 
-        // Future<?> callablFuture = executorService.submit(new Callable() {
-        //     @Override
-        //     public Object call() throws Exception {
-        //         System.out.println("Submitted task - getting Future back");
-        //         return "Callable result";
-        //     }
-        // });
+        Future<?> callablFuture = executorService.submit(new Callable() {
+            @Override
+            public Object call() throws Exception {
+                System.out.println("Submitted Callable task - getting Future with result back");
+                return "Callable result";
+            }
+        });
 
         try {
-            System.out.println("future.get() : " + future.get());
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            System.out.println("callableFuture.get() : " + callablFuture.get());
+        } catch (InterruptedException | ExecutionException e1) {
+            e1.printStackTrace();
         }
+
         System.out.println("Main goes on...");
         executorService.shutdown();
     }
