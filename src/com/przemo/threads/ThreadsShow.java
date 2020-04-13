@@ -23,22 +23,24 @@ public class ThreadsShow {
 
     public static void main(String[] args) {
         Thread myThread = new MyThread();
-
-        Runnable r = () -> {System.out.println("Custom in-place Runnable");};
-
-        // Thread anonymousThread = new Thread(new Runnable(
-        //     {
-        //         public void run() {
-        //             System.out.println("Anonymous runnable!");
-        //         }
-            
-        //     };
-
-        // ))
-        Thread runnablThread = new Thread(new MyRunnable(), "MyRunnableThread");
-
         myThread.start();
+
+        Thread runnablThread = new Thread(new MyRunnable(), "MyRunnableThread");
         runnablThread.start();
+
+
+        Runnable r = () -> {
+            System.out.println("Custom in-place Runnable");
+        };
+        new Thread(r).start();
+
+        Thread anonymousThread = new Thread(new Runnable() {
+            public void run() {
+                System.out.println("Anonymous runnable!");
+            }
+        });
+        anonymousThread.start();
+
         System.out.println("Main continues...");
     }
 }
