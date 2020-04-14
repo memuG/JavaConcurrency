@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 public class PersonGenerator {
-    // https://www.youtube.com/watch?v=85mpz0keuGA&list=PLTgRMOcmRb3Mp1rPjU6eM-u4L7EcF7nie&index=3
     public static List<Person> generatePersonList(int size) {
         List<Person> ret = new ArrayList<>();
         String firstNames[] = {"Mary", "Patricia", "Linda"};
